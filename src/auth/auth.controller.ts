@@ -15,12 +15,12 @@ export class AuthController {
 
     @MessagePattern('auth.login.user')
     loginUser(@Payload() loginUserDto: LoginUserDto) {
-        return 'Login user';
+        return this.authService.loginUser(loginUserDto);
     }
 
     @MessagePattern('auth.verify.user')
-    verifyUser() {
-        return 'Verify user';
+    verifyUser(@Payload() token: string) {
+        return this.authService.verifyUser(token);
     }
 
 

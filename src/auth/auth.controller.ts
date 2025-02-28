@@ -1,6 +1,7 @@
 import {Controller} from '@nestjs/common';
 import {AuthService} from './auth.service';
-import {MessagePattern} from "@nestjs/microservices";
+import {MessagePattern, Payload} from "@nestjs/microservices";
+import {LoginUserDto, RegisterUserDto} from "./dto";
 
 @Controller()
 export class AuthController {
@@ -8,12 +9,12 @@ export class AuthController {
     }
 
     @MessagePattern('auth.register.user')
-    registerUser() {
+    registerUser(@Payload() registerUserDto: RegisterUserDto) {
         return 'register user';
     }
 
     @MessagePattern('auth.login.user')
-    loginUser() {
+    loginUser(@Payload() loginUserDto: LoginUserDto) {
         return 'Login user';
     }
 
